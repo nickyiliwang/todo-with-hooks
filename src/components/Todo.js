@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Todo.css";
 import Task from "./Task";
 import CreateTask from "./CreateTask";
@@ -9,6 +9,12 @@ export default function Todo() {
     { title: "play some video games", completed: true },
     { title: "get a job", completed: false }
   ]);
+
+  const [tasksRemaining, setTasksRemaining] = useState(0);
+
+  useEffect(() => {
+    setTasksRemaining(tasks.filter(task => !task.completed).length);
+  });
 
   const [count, setCount] = useState(1);
 
@@ -36,7 +42,7 @@ export default function Todo() {
 
   return (
     <div className="todo-container">
-      <div className="header">Todo With Hooks</div>
+      <div className="header">Todo with task remaining {tasksRemaining}</div>
       <div className="tasks">
         {tasks.map((task, index) => (
           <Task
