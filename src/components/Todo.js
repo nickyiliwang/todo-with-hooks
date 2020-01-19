@@ -10,6 +10,8 @@ export default function Todo() {
     { title: "get a job", completed: false }
   ]);
 
+  const [count, setCount] = useState(1);
+
   const addTask = title => {
     const newTasks = [...tasks, { title, completed: false }];
     setTasks(newTasks);
@@ -27,9 +29,14 @@ export default function Todo() {
     setTasks(newTasks);
   };
 
+  const handleOnClick = () => {
+    const newCount = count + 1;
+    setCount(newCount);
+  };
+
   return (
     <div className="todo-container">
-      <div className="header">TODO - ITEMS</div>
+      <div className="header">Todo With Hooks</div>
       <div className="tasks">
         {tasks.map((task, index) => (
           <Task
@@ -44,6 +51,8 @@ export default function Todo() {
       <div className="create-task">
         <CreateTask addTask={addTask} />
       </div>
+      <h2>{count}</h2>
+      <button onClick={handleOnClick}>Increment</button>
     </div>
   );
 }

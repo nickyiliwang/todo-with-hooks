@@ -7,8 +7,8 @@ export default function Task({ task, index, completeTask, deleteTask }) {
       style={{ textDecoration: task.completed ? "line-through" : "" }}
     >
       {task.title}
-      <button onClick={() => completeTask(index)}>Complete</button>
       <button onClick={() => deleteTask(index)}>Delete</button>
+      <button onClick={() => completeTask(index)}>Complete</button>
     </div>
   );
 }
